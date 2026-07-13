@@ -95,7 +95,7 @@ export const editarTarea = async(req, res) => {
         if(existeLaTarea && existeLaTarea._id.toString() !== id){
             return res.status(400).json({mensaje:"Hay otra tarea con ese nombre"})
         }
-        const tareaEncontrada = await Tarea.findByIdAndUpdate(id, req.body, {new:true, runValidators:true})
+        const tareaEncontrada = await Tarea.findByIdAndUpdate(id, req.body, {returnDocument:'after', runValidators:true})
         if(!tareaEncontrada){
             return res.status(404).json({mensaje:"No se encontró la tarea solicitada"})
         }

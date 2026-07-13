@@ -7,7 +7,7 @@ const validacionUsuario = [
     .notEmpty().withMessage("Email es un campo obligatorio")
     .isEmail().withMessage("Debe tener un formato de email válido"),
 
-    body("contraseña")
+    body("password")
     .trim()
     .notEmpty().withMessage("Contraseña es un campo obligatorio")
     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\W_]{8,64}$/)

@@ -6,8 +6,8 @@ import mongoose from "mongoose"
 export const crearUsuario = async(req, res) => {
     try {
         const saltos = genSaltSync(10)
-        const contraseñaHash = hashSync(req.body.contraseña, saltos)
-        req.body.contraseña = contraseñaHash
+        const contraseñaHash = hashSync(req.body.password, saltos)
+        req.body.password = contraseñaHash
         const nuevoUsuario = new Usuario(req.body)
         
         const existeElUsuario = await Usuario.findOne({email:req.body.email})
@@ -81,12 +81,12 @@ export const editarUsuario = async(req, res) => {
         if(existeElUsuario && existeElUsuario._id.toString() !== id){
             return res.status(400).json({mensaje:"El email ya existe en otro usuario"})
         }
-        if(req.body.contraseña){
+        if(req.body.password){
             const saltos = genSaltSync(10);
-            const contraseñaHash = hashSync(req.body.contraseña, saltos)
-            req.body.contraseña = contraseñaHash
+            const contraseñaHash = hashSync(req.body.password, saltos)
+            req.body.password = contraseñaHash
         }
-        const usuarioEncontrado = await Usuario.findByIdAndUpdate(id, req.body, {new:true, runValidators:true})
+        const usuarioEncontrado = await Usuario.findByIdAndUpdate(id, req.body, {returnDocument:'after', runValidators:true})
         if(!usuarioEncontrado){
             return res.status(404).json({mensaje:"No se encontró el usuario que estas queriendo editar"})
         }
