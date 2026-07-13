@@ -5,6 +5,6 @@ import usuariosRoutes from './usuarios.routes.js'
 const router = Router()
 
 router.use('/tareas', tareasRoutes)
-router.use('usuarios', usuariosRoutes)
+router.use('/usuarios', usuariosRoutes)
 
 export default router
