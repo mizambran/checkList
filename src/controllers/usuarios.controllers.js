@@ -81,6 +81,11 @@ export const editarUsuario = async(req, res) => {
         if(existeElUsuario && existeElUsuario._id.toString() !== id){
             return res.status(400).json({mensaje:"El email ya existe en otro usuario"})
         }
+        if(req.body.contraseña){
+            const saltos = genSaltSync(10);
+            const contraseñaHash = hashSync(req.body.contraseña, saltos)
+            req.body.contraseña = contraseñaHash
+        }
         const usuarioEncontrado = await Usuario.findByIdAndUpdate(id, req.body, {new:true, runValidators:true})
         if(!usuarioEncontrado){
             return res.status(404).json({mensaje:"No se encontró el usuario que estas queriendo editar"})
