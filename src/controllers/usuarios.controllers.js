@@ -71,7 +71,7 @@ export const usuarioPaginado = async(req, res) => {
     }
 }
 
-export const editarUsuario = (req, res) => {
+export const editarUsuario = async(req, res) => {
     try {
         const id = req.params.id
         if(!mongoose.isValidObjectId(id)){
@@ -93,7 +93,7 @@ export const editarUsuario = (req, res) => {
 }
 
 
-export const borrarUsuario = (req, res) => {
+export const borrarUsuario = async(req, res) => {
     try {
         const id = req.params.id
         if(!mongoose.isValidObjectId(id)){
