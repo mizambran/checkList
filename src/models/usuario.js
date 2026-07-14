@@ -7,7 +7,8 @@ const usuarioEsquema = new Schema({
         validate:{
             validator:(valor) => {
                 return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(valor)
-            }
+            },
+            message:"El formato de email no es valido"
         },
         required:true,
         unique:true
