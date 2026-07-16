@@ -22,7 +22,13 @@ const tareaEsquema = new Schema({
     fecha_entrega:{
         type:Date,
         required:true
-    }},
+    },
+    usuarioId: {
+    type: Schema.Types.ObjectId, // para que la tarea quede relacionada al usuario
+    ref: 'usuario', // Tiene que llamarse igual que modelo de Usuario
+    required: true
+    }
+},
     {
     timestamps:true
     }
